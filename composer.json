@@ -14,5 +14,12 @@
         "psr-4": {
             "Spork\\Planning\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spork\\Planning\\PlanningServiceProvider"
+            ]
+        }
     }
 }

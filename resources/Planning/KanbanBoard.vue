@@ -48,13 +48,13 @@
                             >
                                 <div
                                     :key="task.id"
-                                    class="p-4 flex flex-col bg-white rounded-md border border-dashed border-gray-300 rounded transform hover:shadow-md cursor-pointer r"
+                                    class="p-4 flex flex-col dark:bg-slate-700 rounded-md border border-dashed border-gray-300 dark:border-slate-500 rounded transform hover:shadow-md cursor-pointer r"
                                     @contextmenu.prevent="(e) => openContextMenu(e, task)"
                                 >
-                                    <span class="block mb-2 text-xl text-gray-900">
+                                    <span class="block mb-2 text-xl text-gray-900 dark:text-slate-50">
                                       {{ task.title }}
                                     </span>
-                                    <p class="text-gray-700">
+                                    <p class="text-gray-700 dark:text-slate-200 ">
                                         {{ task.description }}
                                     </p>
                                     <div class="mt-4 flex justify-between w-full">

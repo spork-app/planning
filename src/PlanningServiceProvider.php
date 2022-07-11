@@ -10,13 +10,15 @@ class PlanningServiceProvider extends RouteServiceProvider
 {
     public function boot()
     {
-        Route::middleware($this->app->make('config')->get('spork.planning.middleware', ['auth:sanctum']))
-            ->prefix('api/planning')
-            ->group(__DIR__ . '/../routes/web.php');
     }
-
+    
     public function register()
     {
-        Spork::addFeature('planning', 'ViewBoardsIcon', '/planning');
+        Spork::addFeature('planning', 'ViewBoardsIcon', '/planning', 'tool');
+        if (config('spork.planning.enabled')) {
+            Route::middleware($this->app->make('config')->get('spork.planning.middleware', ['auth:sanctum']))
+                ->prefix('api/planning')
+                ->group(__DIR__ . '/../routes/web.php');
+        }
     }
 }
