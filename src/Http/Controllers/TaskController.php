@@ -43,10 +43,9 @@ class TaskController
     
         return $request->user()->statuses()->with('tasks')->get();
     }
-
-
     
-    public function store(Request $request) {
+    public function store(Request $request) 
+    {
         $request->validate([
             'title' => 'required|string',
             'description' => 'nullable',
