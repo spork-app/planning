@@ -2,7 +2,7 @@
 
 namespace Spork\Planning\Models;
 
-use App\Models\FeatureList;
+use Spork\Core\Models\FeatureList;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
