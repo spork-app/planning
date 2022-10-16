@@ -9,7 +9,9 @@
             "email": "5355937+austinkregel@users.noreply.github.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=8.0"
+    },
     "autoload": {
         "psr-4": {
             "Spork\\Planning\\": "src/"
@@ -21,5 +23,23 @@
                 "Spork\\Planning\\PlanningServiceProvider"
             ]
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spork\\Planning\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/pint"
+    },
+    "homepage": "https://github.com/spork-app/news",
+    "keywords": [
+        "spork-plugins"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
