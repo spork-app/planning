@@ -2,21 +2,21 @@
 
 namespace Spork\Planning\Models;
 
-use Spork\Core\Models\FeatureList;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use Spatie\Tags\HasTags;
+use Spork\Core\Models\FeatureList;
 
 class Task extends Model
 {
     use HasFactory, HasTags, Searchable;
 
     protected $fillable = [
-        'title', 
-        'description', 
-        'order', 
+        'title',
+        'description',
+        'order',
         'status_id',
         'feature_list_id',
         'completed_at',

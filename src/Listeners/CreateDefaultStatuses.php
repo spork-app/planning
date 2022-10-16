@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Str;
 
-class CreateDefaultStatuses 
+class CreateDefaultStatuses
 {
     protected const STATUSES = [
         'Backlog',

@@ -4,33 +4,37 @@ namespace Spork\Planning\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TaskController 
+class TaskController
 {
-    public function statuses() {
+    public function statuses()
+    {
         return \Spatie\QueryBuilder\QueryBuilder::for(\Spork\Planning\Models\Status::class)
-        ->allowedIncludes(['users', 'tasks', 'tasks.creator','tasks.assignee'])
+        ->allowedIncludes(['users', 'tasks', 'tasks.creator', 'tasks.assignee'])
         ->where('user_id', auth()->id())
         ->get();
     }
 
-    public function users() {
+    public function users()
+    {
         return \Spatie\QueryBuilder\QueryBuilder::for(\App\Models\User::class)
-        ->allowedIncludes(['tasks.creator','tasks.assignee'])
+        ->allowedIncludes(['tasks.creator', 'tasks.assignee'])
         ->get();
     }
-    
-    public function assignTask(Request $request) {
+
+    public function assignTask(Request $request)
+    {
         $task = \Spork\Planning\Models\Task::findOrFail($request->get('task_id'));
         $user = \App\Models\User::findOrFail($request->get('user_id'));
         $task->assignee_id = $user->id;
         $task->save();
     }
-    
-    public function sync(Request $request) {
+
+    public function sync(Request $request)
+    {
         $request->validate([
-            'columns' => ['required', 'array']
+            'columns' => ['required', 'array'],
         ]);
-    
+
         foreach ($request->columns as $status) {
             foreach ($status['tasks'] as $i => $task) {
                 $order = $i + 1;
@@ -40,11 +44,11 @@ class TaskController
                 }
             }
         }
-    
+
         return $request->user()->statuses()->with('tasks')->get();
     }
-    
-    public function store(Request $request) 
+
+    public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string',
@@ -52,14 +56,15 @@ class TaskController
             'order' => 'required|int',
             'status_id' => 'required|exists:statuses,id',
         ]);
-    
+
         /** @var \App\Core\Models\User $user */
         $user = $request->user();
-    
+
         return $user->tasksCreated()->create($request->all());
     }
-    
-    public function destroy(Request $request, $id) {
+
+    public function destroy(Request $request, $id)
+    {
         $task = \Spork\Planning\Models\Task::findOrFail($id);
         $task->delete();
 
